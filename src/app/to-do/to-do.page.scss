@@ -1,0 +1,55 @@
+ion-content {
+  --background: rgb(2, 0, 36);
+  --background: linear-gradient(
+    11deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(56, 128, 255, 0.4598214285714286) 100%
+  );
+}
+
+#today {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+
+ion-card {
+  background: rgb(2, 0, 36);
+}
+
+ion-list {
+  background: transparent;
+}
+
+.d-flex-col {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.d-flex-row {
+  display: flex;
+  align-items: center;
+}
+
+.d-space {
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+ion-checkbox {
+  --background: transparent;
+  --border-color: #3880ff;
+}
+
+ion-button {
+  --background: rgb(2, 0, 36);
+}
+
+.custom-skeleton {
+  height: 77px;
+  margin-bottom: 15px;
+}

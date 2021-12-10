@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-title color="light"><strong>Login</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        class="ion-text-center"
+        offset-lg="3.5"
+        offset-md="2"
+        size-lg="5"
+        size-md="8"
+        size-sm="12"
+      >
+        <ion-card class="ion-padding-start ion-padding-end">
+          <div class="switch-auth">
+            <ion-text>
+              <span>
+                Don't have an account?
+                <a class="ion-link" (click)="goToRegister()">Register</a>
+              </span>
+            </ion-text>
+          </div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <div class="ion-margin">
+              <ion-text
+                *ngIf="showError && formControls?.email?.errors?.required"
+                color="danger"
+              >
+                Email is required.
+              </ion-text>
+            </div>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <div
+              class="ion-margin"
+              *ngIf="showError && formControls?.password?.errors?.required"
+            >
+              <ion-text color="danger">
+                Password is required.
+              </ion-text>
+            </div>
+            <ion-spinner
+              *ngIf="submitted"
+              class="ion-margin"
+              name="crescent"
+            ></ion-spinner>
+            <ion-button *ngIf="!submitted" class="ion-margin" type="submit">
+              Submit
+            </ion-button>
+            <div class="ion-margin-start ion-margin-end ion-margin-bottom">
+              <ion-text>
+                <span>
+                  Forgot password?
+                  <a class="ion-link" (click)="presentResetModal()">Reset</a>
+                </span>
+              </ion-text>
+            </div>
+            <div class="ion-margin" *ngIf="!submitted && firebaseError">
+              <ion-text color="danger">
+                {{firebaseError}}
+              </ion-text>
+            </div>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

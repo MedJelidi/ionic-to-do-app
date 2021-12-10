@@ -1,0 +1,47 @@
+ion-toolbar {
+  --background: #3880ff;
+}
+
+ion-button {
+  --border-color: #3880ff;
+}
+
+ion-card {
+  background: #0a091d;
+}
+
+.d-flex-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+ion-icon {
+  position: absolute;
+  right: 0;
+  font-size: 25px;
+}
+
+ion-datetime {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.time-container {
+  position: relative;
+  width: 25px;
+  height: 25px;
+}
+
+.inputs {
+  width: 50%;
+  justify-content: flex-start;
+}
+
+.buttons {
+  width: 50%;
+  justify-content: flex-end;
+}

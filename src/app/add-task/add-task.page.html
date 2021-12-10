@@ -1,0 +1,29 @@
+<ion-card class="ion-padding ion-no-margin ion-margin-bottom">
+  <div class="d-flex-row">
+    <div class="d-flex-row inputs">
+      <div class="time-container">
+        <ion-datetime
+          [pickerOptions]="timePickerOptions"
+          displayFormat="HH:mm"
+          placeholder=""
+        ></ion-datetime>
+        <ion-icon name="time-outline"></ion-icon>
+      </div>
+      <ion-input
+        [(ngModel)]="name"
+        placeholder="Enter new task name"
+        type="text"
+      ></ion-input>
+    </div>
+    <div class="d-flex-row buttons">
+      <ion-button
+        (click)="onSubmit()"
+        [disabled]="formInvalid()"
+        fill="outline"
+        size="small"
+      >
+        Add
+      </ion-button>
+    </div>
+  </div>
+</ion-card>

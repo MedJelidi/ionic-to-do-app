@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-title color="light"><strong>Reset Password</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form
+    [formGroup]="emailForm"
+    (ngSubmit)="onSubmit()"
+    class="ion-padding ion-text-center"
+  >
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <div class="ion-margin">
+      <ion-text
+        *ngIf="showError && formControls?.email?.errors?.required"
+        color="danger"
+      >
+        Email is required.
+      </ion-text>
+      <ion-text
+        *ngIf="showError && formControls?.email?.errors?.email"
+        color="danger"
+      >
+        Please insert a valid email.
+      </ion-text>
+    </div>
+    <div class="ion-margin">
+      <ion-text *ngIf="emailError" color="danger" class="ion-margin">
+        {{emailError}}
+      </ion-text>
+    </div>
+    <ion-spinner
+      *ngIf="submitted"
+      class="ion-margin"
+      name="crescent"
+    ></ion-spinner>
+    <ion-button *ngIf="!submitted" class="ion-margin" type="submit">
+      Submit
+    </ion-button>
+  </form>
+</ion-content>

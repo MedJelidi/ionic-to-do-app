@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar class="ion-text-center">
+    <ion-title color="light"><strong>Register</strong></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        class="ion-text-center"
+        offset-lg="3.5"
+        offset-md="2"
+        size-lg="5"
+        size-md="8"
+        size-sm="12"
+      >
+        <ion-card class="ion-padding-start ion-padding-end">
+          <div class="switch-auth">
+            <ion-text>
+              <span class="auth-msg">
+                Already have an account?
+                <a class="ion-link" (click)="goToLogin()">Login</a>
+              </span>
+            </ion-text>
+          </div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <div class="ion-margin">
+              <ion-text
+                *ngIf="showError && formControls?.email?.errors?.required"
+                color="danger"
+              >
+                Email is required.
+              </ion-text>
+              <ion-text
+                *ngIf="showError && formControls?.email?.errors?.email"
+                color="danger"
+              >
+                Please insert a valid email.
+              </ion-text>
+            </div>
+            <div class="ion-margin">
+              <ion-text *ngIf="emailError" color="danger" class="ion-margin">
+                {{emailError}}
+              </ion-text>
+            </div>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <div
+              *ngIf="showError && formControls.password.errors"
+              class="ion-margin"
+            >
+              <ion-text
+                *ngIf="formControls?.password?.errors?.required"
+                color="danger"
+              >
+                Password is required.
+              </ion-text>
+              <ion-text
+                *ngIf="formControls?.password?.errors?.minlength"
+                color="danger"
+              >
+                Password should be minimum 6 characters.
+              </ion-text>
+            </div>
+            <ion-spinner
+              *ngIf="submitted"
+              class="ion-margin"
+              name="crescent"
+            ></ion-spinner>
+            <ion-button *ngIf="!submitted" class="ion-margin" type="submit">
+              Submit
+            </ion-button>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>to-do</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        class="d-flex-row d-space"
+        offset-lg="3"
+        offset-md="2"
+        size-lg="6"
+        size-md="8"
+        size-sm="12"
+      >
+        <ion-text color="light">
+          <h1 class="ion-no-margin ion-margin-top" id="today">
+            <strong>Today</strong>
+          </h1>
+          <h6 class="ion-no-margin">{{today | date:'dd/MM/yyyy'}}</h6>
+        </ion-text>
+        <ion-button
+          (click)="onAdd()"
+          *ngIf="!loading"
+          class="ion-no-margin"
+          fill="outline"
+          size="large"
+        >
+          <ion-icon
+            [name]="showAddCard ? 'close-outline' : 'add-outline'"
+            slot="icon-only"
+          ></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset-lg="3" offset-md="2" size-lg="6" size-md="8" size-sm="12">
+        <ion-list>
+          <div *ngIf="loading">
+            <ion-skeleton-text
+              *ngFor="let i of [1, 2, 3, 4, 5]"
+              animated
+              class="custom-skeleton"
+            ></ion-skeleton-text>
+          </div>
+          <app-add-task
+            (closeAddCard)="onAdd()"
+            *ngIf="showAddCard"
+          ></app-add-task>
+          <ion-reorder-group disabled="false">
+            <ion-card
+              (click)="onCheck(t.id, t.done)"
+              *ngFor="let t of tasks; trackBy: identity"
+              button="true"
+              class="ion-padding ion-no-margin ion-margin-bottom"
+            >
+              <div class="d-flex-row">
+                <ion-checkbox
+                  color="success"
+                  ngModel="{{t.done}}"
+                ></ion-checkbox>
+                <div class="d-flex-col">
+                  <ion-label
+                    [ngStyle]="{'text-decoration': t.done ? 'line-through': 'none'}"
+                    class="name"
+                    color="light"
+                  >
+                    {{t.name}}
+                  </ion-label>
+                  <ion-label>{{t.time}}</ion-label>
+                </div>
+              </div>
+              <ion-reorder slot="end"></ion-reorder>
+            </ion-card>
+          </ion-reorder-group>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
